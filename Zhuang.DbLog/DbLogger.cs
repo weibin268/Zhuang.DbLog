@@ -11,6 +11,28 @@ namespace Zhuang.DbLog
     {
         private ILogService _logService;
 
+        private static DbLogger _instance;
+
+        private static object _objLock = new object();
+
+        public static DbLogger Instance
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    lock (_objLock)
+                    {
+                        if (_instance == null)
+                        {
+                            _instance = new DbLogger();
+                        }
+                    }
+                }
+                return _instance;
+            }
+        }
+        
         public DbLogger() : this(new DefaultLogService())
         {
 
