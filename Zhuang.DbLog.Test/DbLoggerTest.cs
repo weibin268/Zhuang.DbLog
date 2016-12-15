@@ -11,13 +11,21 @@ namespace Zhuang.DbLog.Test
         {
             try
             {
-                throw new Exception("aaa");
+                try
+                {
+                    var ex = new Exception("aaa");
+                    throw ex;
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("bb", ex);
+                }
             }
             catch (Exception ex)
             {
                 DbLogger.Instance.Log("test01", Commons.LogModuleType.后台服务, ex);
-
             }
+
         }
     }
 }

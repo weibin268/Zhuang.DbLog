@@ -61,12 +61,12 @@ namespace Zhuang.DbLog
 
         public void Log(string logName, LogModuleType moduleType, Exception ex)
         {
-            Log(logName, (int)moduleType, moduleType.ToString(), ex.Message, ex.StackTrace, string.Empty);
+            Log(logName, (int)moduleType, moduleType.ToString(), ex.Message, Commons.ExceptionUtil.GetAllExceptionInfo(ex), string.Empty);
         }
 
         public void Log(string logName, LogModuleType moduleType, Exception ex, string extraData)
         {
-            Log(logName, (int)moduleType, moduleType.ToString(), ex.Message, ex.StackTrace, extraData);
+            Log(logName, (int)moduleType, moduleType.ToString(), ex.Message, Commons.ExceptionUtil.GetAllExceptionInfo(ex), extraData);
         }
 
     }
